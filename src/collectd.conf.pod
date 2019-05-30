@@ -2822,6 +2822,41 @@ convention will be used for the additional ports.
 
 =back
 
+=head2 Plugin C<dpdk_telemetry>
+
+
+The I< dpdk_telemetry > plugin collects DPDK metrics via the dpdk_telemetry library.
+
+
+B<Synopsis:>
+
+
+  <Plugin dpdk_telemetry>
+    ClientSocketPath "/var/run/.client"
+    DpdkSocketPath "/var/run/.rte_telemetry"
+  </Plugin>
+
+
+B<Options:>
+
+
+=over 2
+
+
+=item B<ClientSocketPath> I<Client_Path>
+
+
+The path to the client socket.
+
+
+=item B<DpdkSocketPath> I<Dpdk_Path>
+
+
+The path to DPDK Telemetry.
+
+
+=back
+
 =head2 Plugin C<email>
 
 =over 4

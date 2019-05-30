@@ -6289,6 +6289,7 @@ plugin_disk="no"
 plugin_drbd="no"
 plugin_dpdkevents="no"
 plugin_dpdkstat="no"
+plugin_dpdk_telemetry="no"
 plugin_entropy="no"
 plugin_ethstat="no"
 plugin_fhcount="no"
@@ -6349,6 +6350,7 @@ if test "x$ac_system" = "xLinux"; then
   plugin_cpufreq="yes"
   plugin_disk="yes"
   plugin_drbd="yes"
+  plugin_dpdk_telemetry="yes"
   plugin_entropy="yes"
   plugin_fhcount="yes"
   plugin_fscache="yes"
@@ -6710,6 +6712,7 @@ AC_PLUGIN([dns],                 [$with_libpcap],           [DNS traffic analysi
 AC_PLUGIN([dpdkevents],          [$plugin_dpdkevents],      [Events from DPDK])
 AC_PLUGIN([dpdkstat],            [$plugin_dpdkstat],        [Stats from DPDK])
 AC_PLUGIN([drbd],                [$plugin_drbd],            [DRBD statistics])
+AC_PLUGIN([dpdk_telemetry],      [$plugin_dpdk_telemetry],  [Metrics from DPDK Telemetry])
 AC_PLUGIN([email],               [yes],                     [EMail statistics])
 AC_PLUGIN([entropy],             [$plugin_entropy],         [Entropy statistics])
 AC_PLUGIN([ethstat],             [$plugin_ethstat],         [Stats from NIC driver])
@@ -7132,6 +7135,7 @@ AC_MSG_RESULT([    dns . . . . . . . . . $enable_dns])
 AC_MSG_RESULT([    dpdkevents. . . . . . $enable_dpdkevents])
 AC_MSG_RESULT([    dpdkstat  . . . . . . $enable_dpdkstat])
 AC_MSG_RESULT([    drbd  . . . . . . . . $enable_drbd])
+AC_MSG_RESULT([    dpdk_telemetry. . . . $enable_dpdk_telemetry])
 AC_MSG_RESULT([    email . . . . . . . . $enable_email])
 AC_MSG_RESULT([    entropy . . . . . . . $enable_entropy])
 AC_MSG_RESULT([    ethstat . . . . . . . $enable_ethstat])

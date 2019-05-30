@@ -62,12 +62,12 @@
 @LOAD_PLUGIN_LOGFILE@LoadPlugin logfile
 @LOAD_PLUGIN_LOG_LOGSTASH@LoadPlugin log_logstash
 
-#<Plugin logfile>
-#	LogLevel @DEFAULT_LOG_LEVEL@
-#	File STDOUT
-#	Timestamp true
-#	PrintSeverity false
-#</Plugin>
+<Plugin logfile>
+	LogLevel @DEFAULT_LOG_LEVEL@
+	File STDOUT
+	Timestamp true
+	PrintSeverity false
+</Plugin>
 
 #<Plugin log_logstash>
 #	LogLevel @DEFAULT_LOG_LEVEL@
@@ -117,6 +117,7 @@
 #@BUILD_PLUGIN_DNS_TRUE@LoadPlugin dns
 #@BUILD_PLUGIN_DPDKEVENTS_TRUE@LoadPlugin dpdkevents
 #@BUILD_PLUGIN_DPDKSTAT_TRUE@LoadPlugin dpdkstat
+@BUILD_PLUGIN_DPDK_TELEMETRY_TRUE@LoadPlugin dpdk_telemetry
 #@BUILD_PLUGIN_DRBD_TRUE@LoadPlugin drbd
 #@BUILD_PLUGIN_EMAIL_TRUE@LoadPlugin email
 #@BUILD_PLUGIN_ENTROPY_TRUE@LoadPlugin entropy
@@ -394,10 +395,10 @@
 #  SubtractGuestState true
 #</Plugin>
 #
-#<Plugin csv>
-#	DataDir "@localstatedir@/lib/@PACKAGE_NAME@/csv"
-#	StoreRates false
-#</Plugin>
+<Plugin csv>
+	DataDir "@localstatedir@/lib/@PACKAGE_NAME@/csv"
+	StoreRates false
+</Plugin>
 
 #<Plugin curl>
 #  <Page "stock_quotes">
@@ -594,6 +595,11 @@
 #  PortName "interface1"
 #  PortName "interface2"
 #</Plugin>
+
+<Plugin dpdk_telemetry>
+	ClientSocketPath "/var/run/.client"
+	DpdkSocketPath "/var/run/.rte_telemetry"
+</Plugin>
 
 #<Plugin email>
 #	SocketFile "@localstatedir@/run/@PACKAGE_NAME@-email"
