@@ -101,7 +101,7 @@ static int dpdk_telemetry_parse(json_t *stats, json_t *port, int portid) {
     return -1;
   }
 
-  if (portid < 0) {
+  if (portid < -1) {
     ERROR("dpdk_telemetry: portid is invalid\n");
     return -1;
   }
@@ -170,7 +170,7 @@ static int parse_json(char *buf) {
   }
   json_error_t error;
   json_t *root = json_loads(buf, 0, &error);
-  int arraylen, i;
+  int arraylen, i, portid;
   json_t *status, *dataArray, *stats, *dataArrayObj;
   stats = NULL;
 
@@ -217,12 +217,13 @@ static int parse_json(char *buf) {
       ERROR("dpdk_telemetry: Port value is not an integer\n");
       return -1;
     }
+    portid = json_integer_value(port);
 
     if (!stats) {
       ERROR("dpdk_telemetry: Request does not have stats field\n");
       return -1;
     }
-    dpdk_telemetry_parse(stats, port, i);
+    dpdk_telemetry_parse(stats, port, portid);
   }
   return 0;
 }
