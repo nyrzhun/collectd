@@ -108,7 +108,8 @@ static int dpdk_telemetry_parse(json_t *stats, json_t *port, int portid) {
 
   json_t *name, *value;
   const char *name_string;
-  int value_int, statslen, i;
+  long long value_int;
+  int statslen, i;
   statslen = json_array_size(stats);
   for (i = 0; i < statslen; i++) {
     statsArrayObj = json_array_get(stats, i);
