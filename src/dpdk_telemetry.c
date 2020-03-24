@@ -198,19 +198,23 @@ static int parse_json(char *buf) {
   status = json_object_get(root, "status_code");
   if (!status) {
     ERROR(PLUGIN_NAME ": Request does not have status field");
+    json_decref(root);
     return -1;
   } else if (!json_is_string(status)) {
     ERROR(PLUGIN_NAME ": Status value is not a string");
+    json_decref(root);
     return -1;
   }
   dataArray = json_object_get(root, "data");
   if (!dataArray) {
     ERROR(PLUGIN_NAME ": Request does not have data field");
+    json_decref(root);
     return -1;
   }
   arraylen = json_array_size(dataArray);
   if (!arraylen) {
     ERROR(PLUGIN_NAME ": No data to get");
+    json_decref(root);
     return -1;
   }
 
@@ -221,19 +225,24 @@ static int parse_json(char *buf) {
     stats = json_object_get(dataArrayObj, "stats");
     if (!port) {
       ERROR(PLUGIN_NAME ": Request does not have port field");
+      json_decref(root);
       return -1;
     }
     if (!json_is_integer(port)) {
       ERROR(PLUGIN_NAME ": Port value is not an integer");
+      json_decref(root);
       return -1;
     }
 
     if (!stats) {
       ERROR(PLUGIN_NAME ": Request does not have stats field");
+      json_decref(root);
       return -1;
     }
     dpdk_telemetry_parse(stats, port);
   }
+
+  json_decref(root);
   return 0;
 }
 
